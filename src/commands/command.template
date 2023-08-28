@@ -1,0 +1,53 @@
+const { isMessageInstance } = require("@sapphire/discord.js-utilities");
+const { Command } = require("@sapphire/framework");
+const { ApplicationCommandType, SlashCommandBuilder } = require("discord.js");
+const ms = require("ms");
+
+class _Command extends Command {
+  constructor(context, options) {
+    super(context, {
+      ...options,
+      name: "",
+      description: "",
+    });
+  }
+  registerApplicationCommands(registry) {
+    registry.registerChatInputCommand(
+      /** @param {SlashCommandBuilder} builder **/ (builder) =>
+        builder.setName(this.name.toLowerCase()).setDescription(this.description)
+    );
+    /*
+    registry.registerContextMenuCommand((builder) =>
+      builder.setName("ping").setType(ApplicationCommandType.Message)
+    );
+    */
+  }
+
+  /**
+   *
+   * @param {import("discord.js").ContextMenuCommandInteraction} interaction
+   * @returns
+   */
+  async contextMenuRun(interaction) {
+  }
+
+  /**
+   *
+   * @param {import("discord.js").Message} message
+   * @returns
+   */
+  async messageRun(message) {
+  }
+
+  /**
+   *
+   * @param {import("discord.js").ChatInputCommandInteraction} interaction
+   * @returns
+   */
+  async chatInputRun(interaction) {
+  }
+}
+
+module.exports = {
+  _Command,
+};
